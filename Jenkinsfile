@@ -5,11 +5,11 @@ pipeline{
     }
     stages{
         stage('S3 Create Bucket'){
-         steps{
-             script{
-             createS3Bucket('madhu-tf-123')
-             }
-         }
+            steps{
+                script{
+                createS3Bucket('madhu-tf-123')
+            }
+        }
         stage('terraform init and apply- Dev'){
             steps{
                 sh returnStatus: true, script: 'terraform workspace new dev'
@@ -31,5 +31,5 @@ def getTerraformPath(){
     return tfHome
 }
 def createS3Bucket(bucketName){
-    sh returnStatus: true, script: "aws s3 mb s3://${bucketName} --region=us-east-1"
+    sh returnStatus: true, script: "aws s3 mb s3://${bucketName} --region=us-east-1"    
 }
