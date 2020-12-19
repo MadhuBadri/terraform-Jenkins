@@ -8,7 +8,8 @@ pipeline{
             steps{
                 script{
                 createS3Bucket('madhu-tf-123')
-            }
+             }
+          }
         }
         stage('terraform init and apply- Dev'){
             steps{
