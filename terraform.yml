@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    state: present
+    s3_bucket: madhu-tf-123
+    key: "Jenkins/terraform.tfstate"
+    region: us-east-1
+    app_env: dev
+  tasks:
+    - name: Run Terraform Scripts
+      terraform:
+        project_path: "./"
+        state: "{{state}}"
+        backend_config:
+          bucket: "{{s3_bucket}}"
+          key: "{{key}}"
+          region: "{{region}}"
+        variables_file: "{{app_env}}.tfvars"
+        workspace: "{{app_env}}"
+        
+    

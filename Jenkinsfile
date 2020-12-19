@@ -16,7 +16,8 @@ pipeline{
             steps{
                 sh returnStatus: true, script: 'terraform workspace new dev'
                 sh "terraform init"
-                sh "terraform apply -var-file=dev.tfvars -auto-approve"
+                //sh "terraform apply -var-file=dev.tfvars -auto-approve"
+                sh "ansible-playbook terraform.yml"
             }
         }
 
@@ -24,7 +25,8 @@ pipeline{
             steps{
                 sh returnStatus: true, script: 'terraform workspace new Prod'
                 sh "terraform init"
-                sh "terraform apply -var-file=prod.tfvars -auto-approve"
+                //sh "terraform apply -var-file=prod.tfvars -auto-approve"
+                sh "ansible-playbook terraform.yml -e app_env=prod"
             }
         }
     }
