@@ -10,9 +10,9 @@
     app_env: dev
   tasks:
     - name: Run Terraform Scripts
-      community.general.terraform:
+      terraform:
         project_path: "./"
-        state: "{{ state }}" 
+        state: "{{ state }}"
         backend_config:
           region: "{{region}}"
           bucket: "{{s3_bucket}}"
