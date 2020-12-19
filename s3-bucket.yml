@@ -1,5 +1,7 @@
 ---
 - hosts: localhost # play book execute locally in jenkins machine
+  remote_user: root
+  become: true
   tasks:
     - name: Install boto3
       pip:
