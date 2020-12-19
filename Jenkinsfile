@@ -6,8 +6,9 @@ pipeline{
     stages{
         stage('S3 Create Bucket'){
             steps{
-                script{
-                createS3Bucket('madhu-tf-123')
+                // script{
+                // createS3Bucket('madhu-tf-123')
+                sh "ansible-playbook s3-bucket.yml"
              }
           }
         }
@@ -18,7 +19,7 @@ pipeline{
                 sh "terraform apply -var-file=dev.tfvars -auto-approve"
             }
         }
-        
+
         stage('terraform init and apply- Prod'){
             steps{
                 sh returnStatus: true, script: 'terraform workspace new Prod'
@@ -32,6 +33,6 @@ def getTerraformPath(){
     def tfHome = tool name: 'terraform-12', type: 'terraform'
     return tfHome
 }
-def createS3Bucket(bucketName){
-    sh returnStatus: true, script: "aws s3 mb s3://${bucketName} --region=us-east-1"    
-}
+// def createS3Bucket(bucketName){
+//     sh returnStatus: true, script: "aws s3 mb s3://${bucketName} --region=us-east-1"    
+// }
