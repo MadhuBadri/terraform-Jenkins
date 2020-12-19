@@ -1,6 +1,6 @@
 ---
 - hosts: localhost # play book execute locally in jenkins machine
-  become: True
+  become: yes
   tasks:
     - name: Install boto3
       pip:
@@ -8,5 +8,6 @@
         state: present
     - name: create S3 bucket
       aws_s3:
-        name: madhu-tf-123
-        state: present
+        bucket: madhu-tf-123
+        mode: create
+        region: us-east-1

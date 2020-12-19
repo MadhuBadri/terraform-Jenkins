@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  become: True
+  become: yes
   vars:
     state: present
     s3_bucket: madhu-tf-123
