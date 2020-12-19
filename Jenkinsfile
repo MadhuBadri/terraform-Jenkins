@@ -7,10 +7,10 @@ pipeline{
         stage('S3 Create Bucket'){
             steps{
                 // script{
-                // createS3Bucket('madhu-tf-123')
-                sh "ansible-playbook s3-bucket.yml"
-             }
-          }
+                // createS3Bucket('madhu-tf-123')                
+               //  }
+               sh "ansible-playbook s3-bucket.yml"
+           }
         }
         stage('terraform init and apply- Dev'){
             steps{
