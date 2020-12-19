@@ -1,6 +1,7 @@
 ---
 - hosts: localhost # play book execute locally in jenkins machine
   become: yes
+  become_method: sudo
   tasks:
     - name: Install boto3
       pip:
